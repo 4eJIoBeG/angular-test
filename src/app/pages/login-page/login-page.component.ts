@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,6 +17,8 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LoginPageComponent {
   authService = inject(AuthService);
+  cookieService = inject(CookieService);
+  router = inject(Router);
 
   form = new FormGroup({
     username: new FormControl(null, Validators.required),
@@ -25,8 +29,15 @@ export class LoginPageComponent {
     if (this.form.valid) {
       //@ts-ignore
       this.authService.login(this.form.value).subscribe((res) => {
+        this.router.navigate(['']);
         console.log(res);
       });
+    }
+  }
+
+  constructor() {
+    if (this.cookieService.get('token')) {
+      this.router.navigate(['']);
     }
   }
 }
