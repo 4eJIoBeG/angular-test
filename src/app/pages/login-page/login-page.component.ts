@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -20,6 +20,8 @@ export class LoginPageComponent {
   cookieService = inject(CookieService);
   router = inject(Router);
 
+  isPasswordVisible = signal<boolean>(false);
+
   form = new FormGroup({
     username: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
@@ -30,9 +32,13 @@ export class LoginPageComponent {
       //@ts-ignore
       this.authService.login(this.form.value).subscribe((res) => {
         this.router.navigate(['']);
-        console.log(res);
       });
     }
+  }
+
+  onVisible(event: Event) {
+    event.preventDefault();
+    this.isPasswordVisible.set(!this.isPasswordVisible());
   }
 
   constructor() {
