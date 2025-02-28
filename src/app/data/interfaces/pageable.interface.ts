@@ -1,4 +1,4 @@
-export interface Pageble<T> {
+export interface Pageable<T> {
   items: T[];
   total: number;
   page: number;
