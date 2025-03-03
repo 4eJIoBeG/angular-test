@@ -24,7 +24,7 @@ import { SubscriberCardComponent } from './subscriber-card/subscriber-card.compo
 export class SidebarComponent {
   profileService = inject(ProfileService);
 
-  subscribers$ = this.profileService.getSubscribersShortList();
+  subscribers$ = this.profileService.getSubscribersShortList(3);
 
   me = this.profileService.me;
 

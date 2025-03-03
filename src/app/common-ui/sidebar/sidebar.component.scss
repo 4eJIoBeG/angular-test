@@ -1,6 +1,6 @@
 :host {
   display: block;
-  padding: 20px 12px;
+  padding: 24px 12px 24px 24px;
   position: relative;
   background: var(--dark-color);
 }
@@ -50,7 +50,7 @@
   align-items: center;
   position: absolute;
   bottom: 24px;
-  width: calc(100% - 20px);
+  width: calc(100% - 40px);
 
   .footer-logo {
     width: 32px;
@@ -69,6 +69,7 @@
     svg {
       width: 13px;
       height: 13px;
+			color: var(--primary-color);
     }
   }
 }
