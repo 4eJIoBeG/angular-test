@@ -30,10 +30,12 @@
 	<img [src]="me.avatarUrl | imgUrl" [alt]="me.lastName" />
 	} @else {
 	<img src="/assets/imgs/avatar-placeholder.png" alt="avatar placeholder" class="footer-logo" />
+	}
+
 	<div class="medium-text username-text">{{ me.username }}</div>
+
 	<a [routerLink]="['settings']" class="settings-btn">
 		<svg icon="settings"></svg>
 	</a>
-	}
 	}
 </footer>
