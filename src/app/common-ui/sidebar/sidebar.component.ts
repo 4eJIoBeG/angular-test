@@ -1,6 +1,5 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -8,6 +7,7 @@ import { ProfileService } from '../../data/services/profile.service';
 import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -32,17 +32,17 @@ export class SidebarComponent {
     {
       label: 'Моя страница',
       icon: 'home',
-      link: '',
+      link: 'profile/me',
     },
     {
       label: 'Чаты',
       icon: 'chats',
-      link: '/chats',
+      link: 'chats',
     },
     {
       label: 'Поиск',
       icon: 'search',
-      link: '/search',
+      link: 'search',
     },
   ];
 

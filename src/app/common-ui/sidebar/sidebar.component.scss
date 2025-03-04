@@ -27,6 +27,7 @@
   width: 100%;
   text-align: left;
   border-radius: 2px;
+  text-decoration: none;
 
   &.active,
   &:hover,
@@ -69,7 +70,7 @@
     svg {
       width: 13px;
       height: 13px;
-			color: var(--primary-color);
+      color: var(--primary-color);
     }
   }
 }

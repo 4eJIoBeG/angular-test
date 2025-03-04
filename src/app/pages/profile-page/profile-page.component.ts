@@ -1,33 +1,39 @@
 import { Component, inject } from '@angular/core';
-import { ProfileHeaderComponent } from "../../common-ui/profile-header/profile-header.component";
-import { ProfileService } from '../../data/services/profile.service'
-import { ActivatedRoute, RouterLink } from '@angular/router'
-import { switchMap } from 'rxjs'
-import { toObservable } from '@angular/core/rxjs-interop'
-import { AsyncPipe } from '@angular/common'
-import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component'
-import { SubscriberCardComponent } from '../../common-ui/sidebar/subscriber-card/subscriber-card.component'
-import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe'
-import { PostFeedComponent } from "./post-feed/post-feed.component";
+import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
+import { ProfileService } from '../../data/services/profile.service';
+import { switchMap } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
+import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
+import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
+import { PostFeedComponent } from './post-feed/post-feed.component';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [ProfileHeaderComponent, AsyncPipe, RouterLink, SvgIconComponent, SubscriberCardComponent, ImgUrlPipe, PostFeedComponent],
+  imports: [
+    ProfileHeaderComponent,
+    AsyncPipe,
+    RouterLink,
+    SvgIconComponent,
+    ImgUrlPipe,
+    PostFeedComponent,
+  ],
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss'
+  styleUrl: './profile-page.component.scss',
 })
 export class ProfilePageComponent {
-profileService=inject(ProfileService);
-route=inject(ActivatedRoute)
+  profileService = inject(ProfileService);
+  route = inject(ActivatedRoute);
 
-subscribers$ = this.profileService.getSubscribersShortList(5);
-me$=toObservable(this.profileService.me)
+  subscribers$ = this.profileService.getSubscribersShortList(5);
+  me$ = toObservable(this.profileService.me);
 
-profile$=this.route.params.pipe(
-	switchMap(({id})=>{
-		if(id==='me') return this.me$
+  profile$ = this.route.params.pipe(
+    switchMap(({ id }) => {
+      if (id === 'me') return this.me$;
 
-		return this.profileService.getAccount(id)
-	})
-)
+      return this.profileService.getAccount(id);
+    }),
+  );
 }
